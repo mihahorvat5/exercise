@@ -6,7 +6,7 @@ client = TestClient(app)
 
 @pytest.fixture
 def mock_user():
-    # Mock user credentials (you may use a test database or set up mocks)
+    # Mock user credentials
     return {"username": "1", "password": "1"}
 
 def test_login_db_success(mock_user):

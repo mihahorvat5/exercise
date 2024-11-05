@@ -23,7 +23,8 @@ Welcome to the test assignment for Syyclops. This test is split into two section
 2. Start Wampserver.
 3. Go to [phpMyAdmin](http://localhost/phpmyadmin/). (The default credentials are usually `username: "root"` and `password: ""`—the backend is set to these credentials by default.)
 4. Create a new database named **syyclops-exam**. Recommended collation for compatibility is **utf8mb4_slovenian_ci** or **utf8mb3_slovenian_ci**.
-5. Run the seeder script to populate the database:
+5. In case you want to change any settings (you use different password or username, or you want to have different database name) go to `settings.py` and change desired info!
+6. Run the seeder script to populate the database:
    ```bash
    python seeder.py
    ```

@@ -1,10 +1,9 @@
-# Controllers/sessionController.py
 import secrets
 import logging
 
-active_sessions = {}  # A dictionary to hold active sessions
+active_sessions = {}
 
-# Configure logging
+
 logging.basicConfig(level=logging.INFO)
 
 def create_session(user_id):
@@ -25,10 +24,8 @@ def create_session(user_id):
     return session_token
 
 def check_session(token):
-    # Check if the token is valid
     return active_sessions.get(token)
 
 def invalidate_session(token):
-    # Invalidate the session token
     if token in active_sessions:
         del active_sessions[token]

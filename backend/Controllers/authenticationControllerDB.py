@@ -1,9 +1,8 @@
-# Controllers/authenticationControllerDB.py
 from fastapi import APIRouter, HTTPException, Request
 
 from Models.auth import LoginRequest
 from data.database import get_connection
-from Controllers.sessionController import create_session, check_session  # Updated import
+from Controllers.sessionController import create_session, check_session
 import logging
 
 router = APIRouter()
@@ -50,5 +49,5 @@ async def check_session_token(request: Request):
     if user_id is None:
         raise HTTPException(status_code=401, detail="Unauthorized: Invalid token")
     
-    # Return the user ID associated with the session token
-    return user_id  # Return the user ID associated with the token
+
+    return user_id

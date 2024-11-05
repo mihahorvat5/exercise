@@ -10,7 +10,7 @@ router = APIRouter()
 @router.get("/usersDB")
 async def read_users(user_id: int = Depends(check_session_token)):
     connection = get_connection()
-    cursor = connection.cursor(dictionary=True)  # Fetch as dictionary
+    cursor = connection.cursor(dictionary=True)
 
     # Retrieve users based on the creator field or visible = True
     cursor.execute(""" 
@@ -35,11 +35,11 @@ async def create_user(user: User, user_id: int = Depends(check_session_token)):
           new_user["gender"], new_user["email"], new_user["phone"],
           new_user.get("image"), user_id, new_user["visible"]))
 
-    # Retrieve the ID of the newly inserted row
+
     new_user_id = cursor.lastrowid
     connection.commit()
 
-    # Fetch the created user data
+
     cursor.execute("SELECT * FROM users WHERE id = %s", (new_user_id,))
     created_user = cursor.fetchone()
 
@@ -54,9 +54,9 @@ async def create_user(user: User, user_id: int = Depends(check_session_token)):
 @router.put("/usersDB/{user_id}")
 async def update_user(user_id: int, updated_data: User, current_user_id: int = Depends(check_session_token)):
     connection = get_connection()
-    cursor = connection.cursor(dictionary=True)  # Fetch as dictionary
+    cursor = connection.cursor(dictionary=True)
 
-    # Fetch the current user data
+
     cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
     user = cursor.fetchone()
 
@@ -65,7 +65,7 @@ async def update_user(user_id: int, updated_data: User, current_user_id: int = D
         if user["creator"] is not None and user["creator"] != current_user_id:
             raise HTTPException(status_code=403, detail="Permission denied")
 
-        # Update user fields including visible
+
         cursor.execute(""" 
             UPDATE users SET firstName = %s, lastName = %s, age = %s, gender = %s,
             email = %s, phone = %s, image = %s, visible = %s WHERE id = %s
@@ -90,7 +90,7 @@ async def update_user(user_id: int, updated_data: User, current_user_id: int = D
 @router.delete("/usersDB/{user_id}")
 async def delete_user(user_id: int, current_user_id: int = Depends(check_session_token)):
     connection = get_connection()
-    cursor = connection.cursor(dictionary=True)  # Fetch as dictionary
+    cursor = connection.cursor(dictionary=True)
 
     cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
     user = cursor.fetchone()

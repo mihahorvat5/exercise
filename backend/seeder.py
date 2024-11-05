@@ -1,28 +1,6 @@
-import mysql.connector
 import json
-
-# Database configuration
-DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",  # Replace with your MySQL username
-    "password": "",  # Replace with your MySQL password
-    "database": "syyclops-exam"
-}
-
-# File paths for the JSON data
-USERS_FILE = 'data/users.json'
-REGISTERED_FILE = 'data/registered.json'
-
-def connect_db():
-    """Connect to the MySQL database."""
-    try:
-        connection = mysql.connector.connect(**DB_CONFIG)
-        if connection.is_connected():
-            print("Connected to MySQL database.")
-        return connection
-    except mysql.connector.Error as e:
-        print("Error connecting to MySQL database:", e)
-        exit(1)
+from data.database import get_connection
+from settings import USERS_FILE, REGISTERED_FILE
 
 def create_tables(cursor):
     """Create tables for `users` and `registered`."""
@@ -84,24 +62,24 @@ def seed_registered(cursor, registered_data):
 
 def main():
     """Main function to run the seeder."""
-    connection = connect_db()
+    connection = get_connection()
     cursor = connection.cursor()
 
-    # Create tables
+
     create_tables(cursor)
 
-    # Load JSON data
+
     with open(USERS_FILE) as f:
         users_data = json.load(f)
 
     with open(REGISTERED_FILE) as f:
         registered_data = json.load(f)
 
-    # Seed data
+
     seed_users(cursor, users_data)
     seed_registered(cursor, registered_data)
 
-    # Commit changes and close connection
+
     connection.commit()
     cursor.close()
     connection.close()

@@ -1,4 +1,6 @@
 [
     {"id": 1, "username": "1", "password": "1"},
-    {"id": 2, "username": "e", "password": "r"}
+    {"id": 2, "username": "e", "password": "r"},
+    {"id": 3, "username": "user", "password": "user"},
+    {"id": 4, "username": "test", "password": "test"}
 ]

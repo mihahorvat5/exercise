@@ -1,4 +1,3 @@
-# tests/test_users_controller_db.py
 from fastapi.testclient import TestClient
 from main import app
 
@@ -11,7 +10,7 @@ created_user_id = None
 def test_read_users_db(client, session_token):
     response = client.get("/usersDB", headers={"Authorization": f"Bearer {session_token}"})
     assert response.status_code == 200
-    assert isinstance(response.json(), list)  # Ensure the response is a list
+    assert isinstance(response.json(), list)
 
 
 def test_create_user_db(client, session_token):
