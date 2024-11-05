@@ -50,24 +50,54 @@ fastapi dev main.py
      ```
      collected 19 items
 
-     tests/test_authentication_controller.py::test_login_db_success PASSED
-     tests/test_authentication_controller.py::test_login_db_invalid_credentials PASSED
-     ...
-     tests/test_users_controller_db.py::test_read_users_db_invalid_token PASSED
-     
-     ======================================================================== 19 passed in 0.12s ===========================================================================
+    tests/test_authentication_controller.py::test_login_db_success PASSED
+    tests/test_authentication_controller.py::test_login_db_invalid_credentials PASSED
+    tests/test_authentication_controller_db.py::test_login_db_success PASSED
+    tests/test_authentication_controller_db.py::test_login_db_invalid_credentials PASSED 
+    tests/test_database.py::test_connection_pool_initialization PASSED
+    tests/test_database.py::test_get_connection PASSED
+    tests/test_main.py::test_read_root PASSED
+    tests/test_session_controller.py::test_create_session PASSED
+    tests/test_session_controller.py::test_invalidate_session PASSED
+    tests/test_users_controller.py::test_read_users PASSED
+    tests/test_users_controller.py::test_create_user PASSED
+    tests/test_users_controller.py::test_update_user PASSED
+    tests/test_users_controller.py::test_delete_user PASSED
+    tests/test_users_controller.py::test_read_users_invalid_token PASSED
+    tests/test_users_controller_db.py::test_read_users_db PASSED
+    tests/test_users_controller_db.py::test_create_user_db PASSED
+    tests/test_users_controller_db.py::test_update_user_db PASSED
+    tests/test_users_controller_db.py::test_delete_user_db PASSED
+    tests/test_users_controller_db.py::test_read_users_db_invalid_token PASSED
+
+    ===================== 19 passed in 0.12s =====================
      ```
 
    - If the database is **not connected**, you’ll see failed messages for database-dependent tests:
      ```
-     collected 19 items
+collected 19 items
 
-     tests/test_authentication_controller.py::test_login_db_success FAILED
-     tests/test_authentication_controller_db.py::test_login_db_invalid_credentials FAILED
-     ...
-     tests/test_users_controller_db.py::test_read_users_db_invalid_token PASSED
-     
-     ============================================================================= FAILURES ===============================================================================
+tests/test_authentication_controller.py::test_login_db_success FAILED
+tests/test_authentication_controller.py::test_login_db_invalid_credentials FAILED
+tests/test_authentication_controller_db.py::test_login_db_success FAILED
+tests/test_authentication_controller_db.py::test_login_db_invalid_credentials FAILED
+tests/test_database.py::test_connection_pool_initialization FAILED
+tests/test_database.py::test_get_connection PASSED
+tests/test_main.py::test_read_root PASSED
+tests/test_session_controller.py::test_create_session PASSED
+tests/test_session_controller.py::test_invalidate_session PASSED
+tests/test_users_controller.py::test_read_users PASSED
+tests/test_users_controller.py::test_create_user PASSED
+tests/test_users_controller.py::test_update_user PASSED
+tests/test_users_controller.py::test_delete_user PASSED
+tests/test_users_controller.py::test_read_users_invalid_token PASSED
+tests/test_users_controller_db.py::test_read_users_db FAILED
+tests/test_users_controller_db.py::test_create_user_db FAILED
+tests/test_users_controller_db.py::test_update_user_db FAILED
+tests/test_users_controller_db.py::test_delete_user_db FAILED
+tests/test_users_controller_db.py::test_read_users_db_invalid_token PASSED
+
+===================== FAILURES =====================
      ```
 
 ### FRONTEND SETUP
