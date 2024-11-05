@@ -1,7 +1,7 @@
 
 # Syyclops Test Assignment - tasks overview
 
-The assignment consists of **<u>all the necessary tasks</u>**, **<u>all the bonuses</u>** **<u>and some extras</u>** i added in to further improve the project. Here i will shortly explain how each thing works:
+The assignment consists of **`all the necessary tasks`**, **`all the bonuses`** **`and some extras`** i added in to further improve the project. Here i will shortly explain how each thing works:
 
 - **Site is fully responsive and funcional on mobile and desktop devices!**
 
