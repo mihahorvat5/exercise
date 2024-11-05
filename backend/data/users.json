@@ -1,0 +1,94 @@
+[
+    {
+        "id": 1,
+        "firstName": "John Doe",
+        "lastName": "Doe",
+        "age": 30,
+        "gender": "male",
+        "email": "john@doe.com",
+        "phone": "123-456-7890",
+        "creator": 1,
+        "visible": false
+    },
+    {
+        "id": 2,
+        "firstName": "Jane Doe",
+        "lastName": "Doe",
+        "age": 30,
+        "gender": "female",
+        "email": "jan@doe.com",
+        "phone": "123-456-7890",
+        "creator": 2,
+        "visible": false
+    },
+    {
+        "id": 3,
+        "firstName": "Alice",
+        "lastName": "Doe",
+        "age": 30,
+        "gender": "female",
+        "email": "alice@doe.com",
+        "phone": "123-456-7890",
+        "creator": 3,
+        "visible": false
+    },
+    {
+        "id": 4,
+        "firstName": "Bob",
+        "lastName": "Doe",
+        "age": 30,
+        "gender": "male",
+        "email": "bob@doe.com",
+        "phone": "123-456-7890",
+        "creator": 4,
+        "visible": false
+    },
+    {
+        "id": 5,
+        "firstName": "Charlie",
+        "lastName": "Doe",
+        "age": 30,
+        "gender": "male",
+        "email": "charlie@doe.com",
+        "phone": "123-456-7890",
+        "image": "https://storage.googleapis.com/pod_public/750/175750.jpg",
+        "creator": 5,
+        "visible": true
+    },
+    {
+        "firstName": "1",
+        "lastName": "2",
+        "age": 3,
+        "gender": "4",
+        "email": "5",
+        "phone": "6",
+        "image": "7",
+        "creator": 2,
+        "id": 6,
+        "visible": false
+    },
+    {
+        "firstName": "1",
+        "lastName": "1",
+        "age": 1,
+        "gender": "1",
+        "email": "1@1.1",
+        "phone": "1",
+        "image": "1",
+        "creator": 2,
+        "visible": false,
+        "id": 7
+    },
+    {
+        "firstName": "UpdatedFirstName",
+        "lastName": "UpdatedLastName",
+        "age": 35,
+        "gender": "female",
+        "email": "updatedemail@example.com",
+        "phone": "987-654-3210",
+        "image": "https://example.com/updated-image.jpg",
+        "creator": 2,
+        "visible": false,
+        "id": 8
+    }
+]
