@@ -5,17 +5,26 @@ The assignment consists of **`all the necessary tasks`**, **`all the bonuses`** 
 
 - **Site is fully responsive and funcional on mobile and desktop devices!**
 
-- **Sidebar**: is accessible via hamburger menu on top right. For non logged users it contains data from DummyJSON. For logged users they can select if they want to use data from MySQL database or from JSON stored on backend via checkbox in sidebar!
+- **Sidebar**: is accessible via hamburger menu on top right. For non logged users it contains data from DummyJSON (no matter if SQL checkbox is enabled or not). For logged users they can select if they want to use data from MySQL database or from JSON stored on backend via checkbox in sidebar!
 
-- **Sidebar data (user cards)**: are clickable in sidebar, each click will open you "main content" page which will allow the user (non logged and logged) to manipulate with data - editing and deleting! **Its also important to keep in mind that each logged user can only see the user cards he made, or the ones that are made public by it's creator**
+- **Sidebar data (user cards)**: user cards are clickable in sidebar, each click will open you "main content" page which will allow the user (non logged and logged) to manipulate with data - editing and deleting! **Its also important to keep in mind that each logged user can only see the user cards he made, or the ones that are made public by it's creator**
 
-- **Login**: Can be done via authentication using MySQL database, or via JSON stored data on backend! (login screen does not have the same layout as other screens, so it is important to select what method you want to use before going there. It works, try it out :D)
+- **Login**: Can be done via authentication using MySQL database, or via JSON stored data on backend! (login screen does not have the same layout as other screens, so it is important to select what method you want to use before going there. It works, try it out :D) - important note about session: session is tied to user, meaning you CAN NOT be logged in from 2 different devices with the same user! if you log in from somewhere else the initial device will get sent back to /login after first contact with backend! Also the session token is additionally saved in localstorage until it's expired meaning you can freely close the browser and next time you open it you should be automatically logged in (as long as the backend didnt restart - that resets all sessions!).
 
-- **Add user**: by clicking on Add User in header you will be shown a form which will let you add users to desired destination. This feature works only for logged users, since it actually saves all the data on MySQL or JSON on backend, depending what you have selected! Test it out :D
+- **Add user**: by clicking on Add User in header you will be shown a form which will let you add users to desired destination (SQL or backend JSON depending on what you have checked in sidebar checkbox). This feature works only for logged users, since it actually saves all the data on MySQL or JSON on backend, depending what you have selected! Test it out :D
 
 - **Home screen**: is accessible via Home button in header shows brief instructions on the right div (left one is for aesthetics only, the buttons do nothing as of now)
 
 - **Some useful information**: if you seeded the database with my seeder correctly you should have some login credentials ready for use, but you can always add more, either directly in MySQL or JSON (depending what you want to login with) - for credentials check the file in backend **backend/data/registered.json** or via **http://localhost/phpmyadmin/** if you set up the database
+
+- **Possible improvements that weren't implemented**
+ - Stay signed in button is currently there only for visual appeal (since i tried to 1:1 your reference page login screen.) - could be made so sessions expire after certain time unless this is checked.
+ - Register and edit profile pages (with working GET, POST, PUT, DELETE methods for MySQL and JSON backend)
+ - Better password protection on database - hashing
+ - Allow image uploads to database - currently the images are uploaded and displayed via url
+ - More error displays on frontend - error messages adjusted for all possible cases
+ - Imporvements to UI
+ - Going live instead of localhost :P
 
 ---
 
@@ -33,7 +42,7 @@ The assignment consists of **`all the necessary tasks`**, **`all the bonuses`** 
    ```
 
 ### OPTIONAL: MYSQL DATABASE SETUP
-1. Download and install **Wampserver**.
+1. Download and install [Wampserver](https://sourceforge.net/projects/wampserver/)
 2. Start Wampserver.
 3. Go to [phpMyAdmin](http://localhost/phpmyadmin/). (The default credentials are usually `username: "root"` and `password: ""`—the backend is set to these credentials by default.)
 4. Create a new database named **syyclops-exam**. Recommended collation for compatibility is **utf8mb4_slovenian_ci** or **utf8mb3_slovenian_ci**.
