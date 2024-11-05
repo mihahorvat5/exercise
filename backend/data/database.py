@@ -11,12 +11,12 @@ logging.basicConfig(level=logging.INFO)
 try:
     connection_pool = pooling.MySQLConnectionPool(
         pool_name="syyclops_pool",
-        pool_size=5,  # Adjust as needed
+        pool_size=5,
         pool_reset_session=True,
         host="localhost",
         database="syyclops-exam",
-        user="root",
-        password=""
+        user="root", # Replace with your MySQL username
+        password=""  # Replace with your MySQL password
     )
     logging.info("Database connected successfully.")
 except mysql.connector.Error as err:
