@@ -1,5 +1,3 @@
-// src/screens/Home.js
-
 import React from 'react';
 import YourSpace from '../components/home/YourSpace';
 

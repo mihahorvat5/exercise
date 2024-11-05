@@ -1,8 +1,6 @@
-// src/components/Header.js
-
 import React, { useEffect, useCallback } from 'react';
-import Logo from '../images/Logo.svg'; // Ensure you have this logo file
-import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
+import Logo from '../images/Logo.svg';
+import { useAuth } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
@@ -12,12 +10,12 @@ const Header = ({ toggleSidebar }) => {
     const location = useLocation(); // Hook to get the current location
 
     const handleLogout = useCallback(() => {
-        logout(); // Call the logout function
-        navigate('/'); // Redirect to login page after logout
+        logout();
+        navigate('/');
     }, [logout, navigate]);
     const handleLogoutAlt = useCallback(() => {
-        logout(); // Call the logout function
-        navigate('/login'); // Redirect to login page after logout
+        logout();
+        navigate('/login');
     }, [logout, navigate]);
 
     useEffect(() => {
@@ -25,18 +23,18 @@ const Header = ({ toggleSidebar }) => {
             response => response,
             error => {
                 if (error.response && error.response.status === 401) {
-                    handleLogoutAlt(); // Logout if unauthorized
+                    handleLogoutAlt();
                 }
                 return Promise.reject(error);
             }
         );
 
         return () => {
-            axios.interceptors.response.eject(interceptor); // Clean up the interceptor on unmount
+            axios.interceptors.response.eject(interceptor);
         };
-    }, [handleLogout, handleLogoutAlt]); // Include handleLogout in dependencies
+    }, [handleLogout, handleLogoutAlt]);
 
-    // Determine if the current path matches any of the routes
+
     const isHomePath = location.pathname === '/';
     const isAddUserPath = location.pathname === '/add-user';
 
@@ -48,28 +46,28 @@ const Header = ({ toggleSidebar }) => {
             <div className="hidden md:flex space-x-4 mb-auto">
                 <span 
                     className={`cursor-pointer ${isHomePath ? 'text-customOrange' : 'text-customWhite'} hover:text-customOrange`}
-                    onClick={() => navigate('/')} // Redirect to home page
+                    onClick={() => navigate('/')}
                 >
                     Home
                 </span>
                 <span 
                     className={`cursor-pointer ${isAddUserPath ? 'text-customOrange' : 'text-customWhite'} hover:text-customOrange`}
-                    onClick={() => navigate('/add-user')} // Redirect to add user page
+                    onClick={() => navigate('/add-user')}
                 >
                     Add User
                 </span>
                 <span className={`cursor-pointer ${location.pathname === '/about' ? 'text-customOrange' : 'text-customWhite'} hover:text-customOrange`}
-                    //onClick={() => navigate('/about')} // Redirect to About Us page
+                    //onClick={() => navigate('/about')}
                 >
                     About Us
                 </span>
                 <span className={`cursor-pointer ${location.pathname === '/press' ? 'text-customOrange' : 'text-customWhite'} hover:text-customOrange`}
-                    //onClick={() => navigate('/press')} // Redirect to Press page
+                    //onClick={() => navigate('/press')}
                 >
                     Press
                 </span>
                 <span className={`cursor-pointer ${location.pathname === '/solutions' ? 'text-customOrange' : 'text-customWhite'} hover:text-customOrange`}
-                    //onClick={() => navigate('/solutions')} // Redirect to Solutions page
+                    //onClick={() => navigate('/solutions')}
                 >
                     Solutions
                 </span>

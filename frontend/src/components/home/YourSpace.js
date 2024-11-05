@@ -1,5 +1,3 @@
-// src/components/home/YourSpace.js
-
 import React from 'react';
 import triangle from '../../images/triangle.svg';
 

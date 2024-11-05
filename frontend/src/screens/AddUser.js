@@ -67,9 +67,6 @@ const AddUser = () => {
 
     return (
         <div className="flex justify-center items-center">
-            {/*
-            <div className="max-w-lg w-full bg-white shadow-md rounded-lg p-6">
-            */}
             <div className="max-w-sm w-full">
                 <h2 className="text-2xl font-semibold text-center mb-4">Add New User</h2>
                 

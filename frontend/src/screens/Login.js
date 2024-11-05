@@ -16,9 +16,9 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const [loginError, setLoginError] = useState(''); // Error message state
-    const [showErrorModal, setShowErrorModal] = useState(false); // Modal visibility
-    const [staySignedIn, setStaySignedIn] = useState(false); // Checkbox state
+    const [loginError, setLoginError] = useState('');
+    const [showErrorModal, setShowErrorModal] = useState(false);
+    const [staySignedIn, setStaySignedIn] = useState(false);
 
     useEffect(() => {
         console.log("Session token on Login page:", sessionToken);

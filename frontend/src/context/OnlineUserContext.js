@@ -1,5 +1,3 @@
-// src/context/OnlineUserContext.js
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { fetchOnlineUsers, updateOnlineUser as apiUpdateUser, deleteOnlineUser as apiDeleteUser } from '../api/onlineController';
 
@@ -15,7 +13,7 @@ export const OnlineUserProvider = ({ children }) => {
             try {
                 setLoading(true);
                 const usersData = await fetchOnlineUsers();
-                setOnlineUsers(usersData.users); // Assuming the response contains a users array
+                setOnlineUsers(usersData.users);
             } catch (error) {
                 console.error('Error fetching online users:', error);
                 setError(error);
@@ -32,7 +30,7 @@ export const OnlineUserProvider = ({ children }) => {
         console.log('Updated online users:', onlineUsers);
     }, [onlineUsers]);
 
-    // Update online user (exposing the function as `updateOnlineUser` to avoid naming issues)
+    // Update online user
     const updateOnlineUser = async (userId, userData) => {
         try {
             const updatedUser = await apiUpdateUser(userId, userData);

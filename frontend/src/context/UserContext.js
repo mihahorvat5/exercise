@@ -1,5 +1,3 @@
-// src/context/UserContext.js
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import {
     fetchUsers,
@@ -8,9 +6,9 @@ import {
     deleteUser,
     updateUserDB,
     deleteUserDB,
-    createUser,  // Import the createUser function
-    createUserDB, // Import the createUserDB function
-} from '../api/userController'; // Ensure these are imported
+    createUser,
+    createUserDB,
+} from '../api/userController';
 import { useAuth } from './AuthContext';
 import { useFetchMethod } from './FetchMethodContext';
 
@@ -27,7 +25,7 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         const fetchUsersData = async () => {
             setLoading(true);
-            setError(null); // Reset error state before fetching
+            setError(null);
             try {
                 let usersData;
                 if (sessionToken) {
@@ -43,14 +41,14 @@ export const UserProvider = ({ children }) => {
             } catch (error) {
                 console.error('Error fetching users:', error);
                 setUsers([]); // Clear the users array on error
-                setError(error); // Set the error state
+                setError(error);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchUsersData(); // Call the function within the effect
-    }, [sessionToken, fetchMethod]); // Only include sessionToken and fetchMethod
+        fetchUsersData();
+    }, [sessionToken, fetchMethod]);
 
     useEffect(() => {
         console.log('Updated users:', users);
@@ -95,18 +93,18 @@ export const UserProvider = ({ children }) => {
         }
     };
 
-    // Updated function to add a user
+
     const addUserContext = async (userData) => {
         try {
             let response;
             // Determine which create function to call based on fetchMethod
             if (fetchMethod === 'SQL') {
-                response = await createUserDB(userData, sessionToken); // Call createUserDB for SQL
+                response = await createUserDB(userData, sessionToken);
             } else {
-                response = await createUser(userData, sessionToken); // Call createUser for REST
+                response = await createUser(userData, sessionToken);
             }
 
-            const newUser = response.user; // Get the user data from the response
+            const newUser = response.user;
 
             if (!newUser) throw new Error("User data is missing in response");
 
@@ -125,7 +123,7 @@ export const UserProvider = ({ children }) => {
             error,
             updateUser: updateUserContext,
             deleteUser: deleteUserContext,
-            addUser: addUserContext // Add addUser to the context value
+            addUser: addUserContext
         }}>
             {children}
         </UserContext.Provider>

@@ -23,9 +23,9 @@ const User = () => {
         visible: false,
     });
     const [userDeleted, setUserDeleted] = useState(false);
-    const [saveError, setSaveError] = useState(null); // Error for handleSave
-    const [deleteError, setDeleteError] = useState(null); // Error for handleDelete
-    const [showErrorModal, setShowErrorModal] = useState(false); // Controls modal visibility
+    const [saveError, setSaveError] = useState(null);
+    const [deleteError, setDeleteError] = useState(null);
+    const [showErrorModal, setShowErrorModal] = useState(false);
 
     useEffect(() => {
         const userList = sessionToken ? users : onlineUsers;
@@ -59,7 +59,7 @@ const User = () => {
     };
 
     const handleSave = async () => {
-        setSaveError(null); // Clear previous errors
+        setSaveError(null);
         try {
             const dataToSend = { ...editedUserData };
 
@@ -82,7 +82,7 @@ const User = () => {
     };
 
     const handleDelete = async () => {
-        setDeleteError(null); // Clear previous errors
+        setDeleteError(null);
         try {
             if (sessionToken) {
                 await deleteUser(user.id);

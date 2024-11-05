@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Logo from '../images/Logo.svg'; // Ensure you have this logo file
+import Logo from '../images/Logo.svg';
 
 const Footer = () => {
     const [currentTime, setCurrentTime] = useState('');
@@ -7,31 +7,31 @@ const Footer = () => {
     const updateTime = () => {
         const now = new Date();
         const options = {
-            weekday: 'long',  // Day name (e.g., "ponedeljek" for Monday)
-            day: 'numeric',   // Day of the month (e.g., "1")
-            month: 'long',    // Month name (e.g., "oktober" for October)
-            year: 'numeric',   // Year (e.g., "2024")
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
         };
         const formattedDate = now.toLocaleDateString('sl-SI', options);
         const formattedTime = now.toLocaleTimeString('sl-SI', { 
             hour: '2-digit', 
             minute: '2-digit', 
-            second: '2-digit' // Include seconds
+            second: '2-digit'
         });
-        setCurrentTime(`${formattedDate} --> ${formattedTime}`); // Updated format
+        setCurrentTime(`${formattedDate} --> ${formattedTime}`);
     };
 
     useEffect(() => {
-        const timer = setInterval(updateTime, 1000); // Update every second
-        return () => clearInterval(timer); // Cleanup on unmount
+        const timer = setInterval(updateTime, 1000);
+        return () => clearInterval(timer);
     }, []);
 
     return (
         <footer className="flex flex-col sm:flex-row justify-between items-center p-4 bg-customBlue text-customWhite">
-            <div className="flex items-center mb-2 sm:mb-0"> {/* Add margin-bottom for mobile spacing */}
-                <img src={Logo} alt="Logo" className="w-auto" /> {/* Adjust size as needed */}
+            <div className="flex items-center mb-2 sm:mb-0">
+                <img src={Logo} alt="Logo" className="w-auto" />
             </div>
-            <div className="flex items-center mb-2 sm:mb-0"> {/* Add margin-bottom for mobile spacing */}
+            <div className="flex items-center mb-2 sm:mb-0">
                 <span>{currentTime}</span>
             </div>
             <div className="flex items-center">

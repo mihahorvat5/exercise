@@ -1,24 +1,24 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
-import { useUser } from '../context/UserContext'; // Import the User Context
-import { useOnlineUser } from '../context/OnlineUserContext'; // Import the Online User Context
-import { useAuth } from '../context/AuthContext'; // Import the Auth Context
-import { useFetchMethod } from '../context/FetchMethodContext'; // Import the Fetch Method Context
-import { useNavigate, useLocation } from 'react-router-dom'; // Import useNavigate and useLocation for routing
+import { useUser } from '../context/UserContext';
+import { useOnlineUser } from '../context/OnlineUserContext';
+import { useAuth } from '../context/AuthContext';
+import { useFetchMethod } from '../context/FetchMethodContext';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
     const sidebarRef = useRef(null);
     const [overlayVisible, setOverlayVisible] = useState(false);
-    const { users, loading, error } = useUser(); // Access user data
-    const { onlineUsers, loading: loadingOnline, error: errorOnline } = useOnlineUser(); // Access online user data
-    const { sessionToken } = useAuth(); // Get the session token to check login status
-    const navigate = useNavigate(); // Use navigate for routing
-    const location = useLocation(); // Get the current location
-    const { fetchMethod, setFetchMethod } = useFetchMethod(); // Use Fetch Method Context
-    const [selectedUserId, setSelectedUserId] = useState(null); // Track selected user
+    const { users, loading, error } = useUser();
+    const { onlineUsers, loading: loadingOnline, error: errorOnline } = useOnlineUser();
+    const { sessionToken } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { fetchMethod, setFetchMethod } = useFetchMethod();
+    const [selectedUserId, setSelectedUserId] = useState(null);
 
     const handleClickOutside = useCallback((event) => {
         if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
-            toggleSidebar(false); // Close the sidebar if clicked outside
+            toggleSidebar(false);
         }
     }, [toggleSidebar]);
 
@@ -36,25 +36,25 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         } else {
             const timer = setTimeout(() => {
                 setOverlayVisible(false);
-            }, 300); // Match the duration of the closing animation
+            }, 300);
             return () => clearTimeout(timer);
         }
     }, [isOpen]);
 
     // Handle user card click
     const handleUserClick = (userId) => {
-        setSelectedUserId(userId); // Set the selected user ID
-        navigate(`/user/${userId}`); // Redirect to user details page using navigate
+        setSelectedUserId(userId);
+        navigate(`/user/${userId}`);
     };
 
     // Effect to unselect user if the URL changes to a different user
     useEffect(() => {
         const pathParts = location.pathname.split('/');
-        const currentUserId = pathParts[pathParts.length - 1]; // Assuming the last part is the user ID
+        const currentUserId = pathParts[pathParts.length - 1];
 
         // Check if the current user ID is different from the selected user ID
         if (selectedUserId && currentUserId !== selectedUserId.toString()) {
-            setSelectedUserId(null); // Unselect if current ID doesn't match selected
+            setSelectedUserId(null);
         }
     }, [location, selectedUserId]);
 
