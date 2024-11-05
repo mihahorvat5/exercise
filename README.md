@@ -1,142 +1,143 @@
-------------------------------------- SETUP GUIDE -------------------------------------
 
-BACKEND SETUP
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+# Syyclops Test Assignment
 
-TO USE MYSQL DATABASE (optional):
--download wampserver
--run wampserver
--http://localhost/phpmyadmin/  (i think default is username:"root" password:"", i left it like this in backend files aswell)
--create new database named syyclops-exam (preferrably with slovenian language, tested 100% working with utf8mb4_slovenian_ci and utf8mb3_slovenian_ci)
-python seeder.py  (will give "Error connecting to MySQL database: unknown database 'syyclops-exam' if the database is not set up correctly, if all is good it will give you success messages in terminal!)
-!!database is NOT NEEDED for functionality of the app, its additional feature! in case there is no database the app will work normally (but the login via database and users from database will not work/be displayed) - (watch out at login page since it works with the checkbox from sidebar aswell, if no database is connected leave it OFF otherwise you will not be able to login)
+Welcome to the test assignment for Syyclops. This test is split into two sections: React and Python.
 
-RUN BACKEND VIA
+---
+
+## SETUP GUIDE
+
+### BACKEND SETUP
+1. Create a virtual environment and activate it:
+   ```bash
+   python -m venv .venv
+   .venv\Scripts\Activate.ps1
+   ```
+2. Install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### OPTIONAL: MYSQL DATABASE SETUP
+1. Download and install **Wampserver**.
+2. Start Wampserver.
+3. Go to [phpMyAdmin](http://localhost/phpmyadmin/). (The default credentials are usually `username: "root"` and `password: ""`—the backend is set to these credentials by default.)
+4. Create a new database named **syyclops-exam**. Recommended collation for compatibility is **utf8mb4_slovenian_ci** or **utf8mb3_slovenian_ci**.
+5. Run the seeder script to populate the database:
+   ```bash
+   python seeder.py
+   ```
+   - If successful, you’ll see success messages in the terminal. If there’s an error like "Error connecting to MySQL database: unknown database 'syyclops-exam'," ensure the database is set up correctly.
+
+> **Note**: The database is **not required** for the app’s functionality. If it’s not connected, the app will still work, but login and user display functionalities dependent on the database will not work. In the login page, ensure the **Database** checkbox in the sidebar is **OFF** if the database is not connected.
+
+### RUNNING THE BACKEND
+To start the backend server, use:
+```bash
 fastapi dev main.py
+```
 
+### TESTING THE BACKEND
+1. Activate the virtual environment:
+   ```bash
+   .venv\Scripts\Activate.ps1
+   ```
+2. Run tests with:
+   ```bash
+   $env:PYTHONWARNINGS = "ignore::UserWarning"; python -m pytest -v
+   ```
+   - If the database is connected, you should see all tests passing:
+     ```
+     collected 19 items
 
+     tests/test_authentication_controller.py::test_login_db_success PASSED
+     tests/test_authentication_controller.py::test_login_db_invalid_credentials PASSED
+     ...
+     tests/test_users_controller_db.py::test_read_users_db_invalid_token PASSED
+     
+     ======================================================================== 19 passed in 0.12s ===========================================================================
+     ```
 
-TESTING THE BACKEND
-.venv\Scripts\Activate.ps1
-$env:PYTHONWARNINGS = "ignore::UserWarning"; python -m pytest -v  (if database is connected it should give all the PASSED messages:
+   - If the database is **not connected**, you’ll see failed messages for database-dependent tests:
+     ```
+     collected 19 items
 
-collected 19 items
+     tests/test_authentication_controller.py::test_login_db_success FAILED
+     tests/test_authentication_controller_db.py::test_login_db_invalid_credentials FAILED
+     ...
+     tests/test_users_controller_db.py::test_read_users_db_invalid_token PASSED
+     
+     ============================================================================= FAILURES ===============================================================================
+     ```
 
-tests/test_authentication_controller.py::test_login_db_success PASSED                                                                                              [  5%] 
-tests/test_authentication_controller.py::test_login_db_invalid_credentials PASSED                                                                                  [ 10%]
-tests/test_authentication_controller_db.py::test_login_db_success PASSED                                                                                           [ 15%] 
-tests/test_authentication_controller_db.py::test_login_db_invalid_credentials PASSED                                                                               [ 21%] 
-tests/test_database.py::test_connection_pool_initialization PASSED                                                                                                 [ 26%] 
-tests/test_database.py::test_get_connection PASSED                                                                                                                 [ 31%] 
-tests/test_main.py::test_read_root PASSED                                                                                                                          [ 36%] 
-tests/test_session_controller.py::test_create_session PASSED                                                                                                       [ 42%] 
-tests/test_session_controller.py::test_invalidate_session PASSED                                                                                                   [ 47%] 
-tests/test_users_controller.py::test_read_users PASSED                                                                                                             [ 52%] 
-tests/test_users_controller.py::test_create_user PASSED                                                                                                            [ 57%] 
-tests/test_users_controller.py::test_update_user PASSED                                                                                                            [ 63%] 
-tests/test_users_controller.py::test_delete_user PASSED                                                                                                            [ 68%] 
-tests/test_users_controller.py::test_read_users_invalid_token PASSED                                                                                               [ 73%] 
-tests/test_users_controller_db.py::test_read_users_db PASSED                                                                                                       [ 78%] 
-tests/test_users_controller_db.py::test_create_user_db PASSED                                                                                                      [ 84%] 
-tests/test_users_controller_db.py::test_update_user_db PASSED                                                                                                      [ 89%] 
-tests/test_users_controller_db.py::test_delete_user_db PASSED                                                                                                      [ 94%] 
-tests/test_users_controller_db.py::test_read_users_db_invalid_token PASSED                                                                                         [100%] 
+### FRONTEND SETUP
+1. Navigate to the `frontend` folder.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-========================================================================== 19 passed in 0.12s ===========================================================================
-
-
-if database is not connected it should give FAIL messages for all the methods that use the database:
-
-
-collected 19 items
-
-tests/test_authentication_controller.py::test_login_db_success FAILED                                                                                              [  5%]
-tests/test_authentication_controller.py::test_login_db_invalid_credentials FAILED                                                                                  [ 10%] 
-tests/test_authentication_controller_db.py::test_login_db_success FAILED                                                                                           [ 15%] 
-tests/test_authentication_controller_db.py::test_login_db_invalid_credentials FAILED                                                                               [ 21%]
-tests/test_database.py::test_connection_pool_initialization FAILED                                                                                                 [ 26%] 
-tests/test_database.py::test_get_connection PASSED                                                                                                                 [ 31%] 
-tests/test_main.py::test_read_root PASSED                                                                                                                          [ 36%] 
-tests/test_session_controller.py::test_create_session PASSED                                                                                                       [ 42%] 
-tests/test_session_controller.py::test_invalidate_session PASSED                                                                                                   [ 47%] 
-tests/test_users_controller.py::test_read_users PASSED                                                                                                             [ 52%] 
-tests/test_users_controller.py::test_create_user PASSED                                                                                                            [ 57%]
-tests/test_users_controller.py::test_update_user PASSED                                                                                                            [ 63%] 
-tests/test_users_controller.py::test_delete_user PASSED                                                                                                            [ 68%] 
-tests/test_users_controller.py::test_read_users_invalid_token PASSED                                                                                               [ 73%] 
-tests/test_users_controller_db.py::test_read_users_db FAILED                                                                                                       [ 78%]
-tests/test_users_controller_db.py::test_create_user_db FAILED                                                                                                      [ 84%] 
-tests/test_users_controller_db.py::test_update_user_db FAILED                                                                                                      [ 89%] 
-tests/test_users_controller_db.py::test_delete_user_db FAILED                                                                                                      [ 94%] 
-tests/test_users_controller_db.py::test_read_users_db_invalid_token PASSED                                                                                         [100%] 
-
-=============================================================================== FAILURES ===============================================================================
-
-
-
-FRONTEND SETUP
-npm i
-
-RUN FRONTEND VIA
+### RUNNING THE FRONTEND
+To start the frontend, run:
+```bash
 npm run start
-
-
------------------------------------ SETUP GUIDE END -----------------------------------
-
-
-Welcome to test assignment for Syyclops.
-
-This test is split into 2 sections, React and Python.
-
-# Frontend
-Go to `frontend` folder and run:
-- `npm i`
-- `npm run start`
-
-This will open the project in http://localhost:3000/
-
-Preferrably you can use https://tailwindcss.com for styling elements, but feel free to use your own CSS as well if you are not familiar with tailwind.
-
-# Frontend assignment
-You will be using a fake JSON response service called DummyJSON - https://dummyjson.com/docs/users. For fetching data you can add [axios](https://axios-http.com/docs/intro) or any other http library.
-- Develop a page which is split into 2 sections: sidebar and main content
-- In the sidebar list 20 users (in the docs you should find how to limit number of users)
-- In the main content section, display the currently selected user (each user in sidebar should be clickable)
-  - Show these fields:
-    - "id", "firstName", "lastName" "age", "gender", "email", "phone"
-- **Bonus**
-  - When user is selected, implement an "Edit functionality", where all of the displayed fields are input and you can change their values. Call the appropriate endpoint (https://dummyjson.com/docs/users#users-update) and update the view with the response from the endpoint
-- **Bonus 2**
-  - Try to match the https://syyclops.com visual identity (colors, logo, etc...)
-
-
-# Backend assignment
-First, you need to create a virtual environment - https://fastapi.tiangolo.com/virtual-environments/
-
-Once you are done, install the required packages:
-
-```
-pip install "fastapi[standard]"
 ```
 
-After this, you can run the server with:
+---
 
-```
-fastapi dev main.py
-```
+## Frontend Assignment
 
-Your server should be available at http://127.0.0.1:8000
+1. Go to the `frontend` folder and run:
+   ```bash
+   npm install
+   npm run start
+   ```
+   This will open the project in [http://localhost:3000/](http://localhost:3000/).
 
-## Backend tasks
+2. **Styling**: Preferably use [Tailwind CSS](https://tailwindcss.com) for styling elements, but feel free to use your own CSS if you are not familiar with Tailwind.
 
-- Create an endpoint which lists the users same way as DummyJSON does
-  - Endpoint should be available on `/users`
-- Create an `PUT` endpoint, where you can edit specific user based on id. You can find list of users in `users.py` file.
-- **Bonus**
-  - Connect React app to use newly created python endpoints instead of DummyJSON
-- **Bonus 2**
-  - Write tests to ensure everything works properly
+### Requirements
 
-If you need help contact me at jan@syyclops.com or anthony.demattos@syyclops.com.
+- **Sidebar**: List 20 users. You can limit the number of users using the [DummyJSON documentation](https://dummyjson.com/docs/users).
+- **Main Content Section**: Display the currently selected user’s details when a user is clicked in the sidebar. Show these fields:
+  - "id", "firstName", "lastName", "age", "gender", "email", "phone"
+
+#### Bonus Features
+
+1. **Edit Functionality**: When a user is selected, implement an "Edit" functionality where all displayed fields are editable inputs. Upon submission, call the appropriate [update endpoint](https://dummyjson.com/docs/users#users-update) and refresh the view with the response.
+2. **Match Syyclops Visual Identity**: Try to match Syyclops' visual identity (colors, logo, etc.).
+
+---
+
+## Backend Assignment
+
+1. First, create and activate a virtual environment. Follow the [FastAPI virtual environment setup](https://fastapi.tiangolo.com/virtual-environments/).
+
+2. Install FastAPI with:
+   ```bash
+   pip install "fastapi[standard]"
+   ```
+
+3. Run the server:
+   ```bash
+   fastapi dev main.py
+   ```
+   Your server should be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
+
+### Requirements
+
+1. **User List Endpoint**: Create an endpoint that lists users similarly to the DummyJSON API.
+   - Endpoint should be available at `/users`.
+2. **Edit User Endpoint**: Create a `PUT` endpoint to edit a specific user based on their ID. Use the users list from the `users.py` file.
+
+#### Bonus Features
+
+1. **Connect React App**: Link the React frontend to use the new Python endpoints instead of DummyJSON.
+2. **Tests**: Write tests to ensure functionality and endpoint accuracy.
+
+---
+
+### Contact
+For help, please reach out to:
+- jan@syyclops.com
+- anthony.demattos@syyclops.com
