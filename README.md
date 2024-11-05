@@ -7,15 +7,15 @@ The assignment consists of **`all the necessary tasks`**, **`all the bonuses`** 
 
 - **Sidebar**: is accessible via hamburger menu on top right. For non logged users it contains data from DummyJSON (no matter if SQL checkbox is enabled or not). For logged users they can select if they want to use data from MySQL database or from JSON stored on backend via checkbox in sidebar!
 
-- **Sidebar data (user cards)**: user cards are clickable in sidebar, each click will open you "main content" page which will allow the user (non logged and logged) to manipulate with data - editing and deleting! **Its also important to keep in mind that each logged user can only see the user cards he made, or the ones that are made public by it's creator**
+- **Sidebar data (user cards)**: user cards are clickable in sidebar, each click will open you "main content" page which will allow the user (non logged and logged) to manipulate data - editing and deleting! **It's also important to keep in mind that each logged user can only see the user cards he made, or the ones that are made public by it's creator**
 
-- **Login**: Can be done via authentication using MySQL database, or via JSON stored data on backend! (login screen does not have the same layout as other screens, so it is important to select what method you want to use before going there. It works, try it out :D) - important note about session: session is tied to user, meaning you CAN NOT be logged in from 2 different devices with the same user! if you log in from somewhere else the initial device will get sent back to /login after first contact with backend! Also the session token is additionally saved in localstorage until it's expired meaning you can freely close the browser and next time you open it you should be automatically logged in (as long as the backend didnt restart - that resets all sessions!).
+- **Login**: Can be done via authentication using MySQL database, or via JSON stored data on backend! (login screen does not have the same layout as other screens, so it is important to select what method you want to use before going there. It works, try it out :D) - important note about session: session is tied to user, meaning you CAN NOT be logged in from 2 different devices with the same user! if you log in from somewhere else the initial device will get sent back to /login after first contact with backend! Also the session token is additionally saved in localstorage until it's expired meaning you can freely close the browser and next time you open it you should remain logged in (as long as the backend didnt restart - that resets all sessions!).
 
 - **Add user**: by clicking on Add User in header you will be shown a form which will let you add users to desired destination (SQL or backend JSON depending on what you have checked in sidebar checkbox). This feature works only for logged users, since it actually saves all the data on MySQL or JSON on backend, depending what you have selected! Test it out :D
 
-- **Home screen**: is accessible via Home button in header shows brief instructions on the right div (left one is for aesthetics only, the buttons do nothing as of now)
+- **Home screen**: is accessible via Home button in header. It shows brief instructions on the right div (left one is for aesthetics only, the buttons do nothing as of now)
 
-- **Some useful information**: if you seeded the database with my seeder correctly you should have some login credentials ready for use, but you can always add more, either directly in MySQL or JSON (depending what you want to login with) - for credentials check the file in backend **backend/data/registered.json** or via **http://localhost/phpmyadmin/** if you set up the database
+- **Some useful information**: if you seeded the database with my seeder correctly you should have some login credentials ready for use, but you can always add more, either directly in MySQL or JSON (depending what you want to login with) - for credentials check the file in backend **"backend/data/registered.json"** or via **http://localhost/phpmyadmin/** if you set up the database
 
 - **Possible improvements that weren't implemented:**
   - Stay signed in button is currently there only for visual appeal (since i tried to 1:1 your reference page login screen.) - could be made so sessions expire after certain time unless this is checked.
@@ -51,9 +51,9 @@ The assignment consists of **`all the necessary tasks`**, **`all the bonuses`** 
    ```bash
    python seeder.py
    ```
-   - If successful, you’ll see success messages in the terminal. If there’s an error like "Error connecting to MySQL database: unknown database 'syyclops-exam'," ensure the database is set up correctly.
+   - If successful, you'll see success messages in the terminal. If there's an error like "Error connecting to MySQL database: unknown database 'syyclops-exam'," ensure the database is set up correctly.
 
-> **Note**: The database is **not required** for the app’s functionality. If it’s not connected, the app will still work, but login and user display functionalities dependent on the database will not work. In the login page, ensure the **Database** checkbox in the sidebar is **OFF** if the database is not connected.
+> **Note**: The database is **not required** for the app's functionality. If it's not connected, the app will still work, but login and user display functionalities dependent on the database will not work (only the DB connections will not work, others will be good - check tests section below). In the login page, ensure the **Database** checkbox in the sidebar is **OFF** if the database is not connected (if it's on no data will be displayed until it's turned off).
 
 ### RUNNING THE BACKEND
 To start the backend server, use:
@@ -97,7 +97,7 @@ fastapi dev main.py
      ===================== 19 passed in 0.12s =====================
      ```
 
-   - If the database is **not connected**, you’ll see failed messages for database-dependent tests:
+   - If the database is **not connected**, you'll see failed messages for database-dependent tests:
      ```
      collected 19 items
 
@@ -153,7 +153,7 @@ npm run start
 ### Requirements
 
 - **Sidebar**: List 20 users. You can limit the number of users using the [DummyJSON documentation](https://dummyjson.com/docs/users).
-- **Main Content Section**: Display the currently selected user’s details when a user is clicked in the sidebar. Show these fields:
+- **Main Content Section**: Display the currently selected user's details when a user is clicked in the sidebar. Show these fields:
   - "id", "firstName", "lastName", "age", "gender", "email", "phone"
 
 #### Bonus Features
