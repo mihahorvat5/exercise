@@ -18,13 +18,13 @@ The assignment consists of **`all the necessary tasks`**, **`all the bonuses`** 
 - **Some useful information**: if you seeded the database with my seeder correctly you should have some login credentials ready for use, but you can always add more, either directly in MySQL or JSON (depending what you want to login with) - for credentials check the file in backend **backend/data/registered.json** or via **http://localhost/phpmyadmin/** if you set up the database
 
 - **Possible improvements that weren't implemented**
- - Stay signed in button is currently there only for visual appeal (since i tried to 1:1 your reference page login screen.) - could be made so sessions expire after certain time unless this is checked.
- - Register and edit profile pages (with working GET, POST, PUT, DELETE methods for MySQL and JSON backend)
- - Better password protection on database - hashing
- - Allow image uploads to database - currently the images are uploaded and displayed via url
- - More error displays on frontend - error messages adjusted for all possible cases
- - Imporvements to UI
- - Going live instead of localhost :P
+  - Stay signed in button is currently there only for visual appeal (since i tried to 1:1 your reference page login screen.) - could be made so sessions expire after certain time unless this is checked.
+  - Register and edit profile pages (with working GET, POST, PUT, DELETE methods for MySQL and JSON backend)
+  - Better password protection on database - hashing
+  - Allow image uploads to database - currently the images are uploaded and displayed via url
+  - More error displays on frontend - error messages adjusted for all possible cases
+  - Imporvements to UI
+  - Going live instead of localhost :P
 
 ---
 
