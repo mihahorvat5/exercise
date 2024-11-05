@@ -1,7 +1,14 @@
 
-# Syyclops Test Assignment
+# Syyclops Test Assignment - tasks overview
 
-Welcome to the test assignment for Syyclops. This test is split into two sections: React and Python.
+The assignment consists of all the necessary tasks, all the bonuses and some extras i added in to further improve the project. Here i will shortly explain how each thing works:
+- **Site is fully responsive and funcional on mobile and desktop devices!**
+- **Sidebar**: is accessible via hamburger menu on top right. For non logged users it contains data from DummyJSON. For logged users they can select if they want to use data from MySQL database or from JSON stored on backend via checkbox in sidebar!
+- **Sidebar data (user cards)**: are clickable in sidebar, each click will open you "main content" page which will allow the user (non logged and logged) to manipulate with data - editing and deleting! **Its also important to keep in mind that each logged user can only see the user cards he made, or the ones that are made public by it's creator**
+- **Login**: Can be done via authentication using MySQL database, or via JSON stored data on backend! (login screen does not have the same layout as other screens, so it is important to select what method you want to use before going there. It works, try it out :D)
+- **Add user**: by clicking on Add User in header you will be shown a form which will let you add users to desired destination. This feature works only for logged users, since it actually saves all the data on MySQL or JSON on backend, depending what you have selected! Test it out :D
+- **Home screen**: is accessible via Home button in header shows brief instructions on the right div (left one is for aesthetics only, the buttons do nothing as of now)
+- **Some useful information**: if you seeded the database with my seeder correctly you should have some login credentials ready for use, but you can always add more, either directly in MySQL or JSON (depending what you want to login with) - for credentials check the file in backend **backend/data/registered.json** or via **http://localhost/phpmyadmin/** if you set up the database
 
 ---
 
